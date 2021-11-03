@@ -7,3 +7,7 @@
 - [x] make a new server for creating video and screenshots
 
 - [x] create videos every day 
+
+- [x] seperate cron jobs in another folder
+
+- [x] make a read me

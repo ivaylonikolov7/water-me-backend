@@ -1,5 +1,6 @@
 const dotenv = require('../config/config');
-const uri = dotenv.MONGODB_URL;
+const uri = dotenv.mongoose.url;
+
 const { MongoClient } = require('mongodb');
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 

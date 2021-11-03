@@ -15,9 +15,10 @@ const leaderBoardRoutes = require('./routes/leaderboard.route');
 const progressionRoutes = require('./routes/progression.route');
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
+const cronjobs = require('./cronjobs/');
 
-const cron = require('node-cron');
-const puppeteer = require('puppeteer');
+cronjobs.createScreenshot();
+cronjobs.makeVideo();
 
 const app = express();
 
@@ -25,38 +26,6 @@ if (config.env !== 'test') {
   app.use(morgan.successHandler);
   app.use(morgan.errorHandler);
 }
-
-const videoshow = require('videoshow');
-const fsPromises = require('fs').promises;
-
-let images = [];
-
-async function makeVideo(){
-	let images = await getImagesFolder();
-	//let images = ['src/images/29-9-2021-0-8-39.png', 'src/images/29-9-2021-0-19-8.png']
-
-	const videoOptions = {
-		fps: 1,
-		transition: false,
-		videoBitrate: 1024,
-		videoCodec: 'libx264',
-		size: '640x?',
-		audioBitrate: '128k',
-		audioChannels: 2,
-		format: 'mp4',
-		pixelFormat: 'yuv420p'
-	}
-	videoshow(images, videoOptions)
-	.save('video.mp4').on('start', ()=>{
-		console.log('start');
-	}).on('error', (err)=>{
-		console.log(err);
-	}).on('end', ()=>{
-		console.log('end');
-	})
-}
-
-//makeVideo();
 
 // set security HTTP headers
 app.use(helmet());
@@ -66,6 +35,8 @@ app.use(express.json());
 
 // parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static('./src/video'));
 
 // sanitize request data
 app.use(xss());
@@ -102,51 +73,5 @@ app.use(errorConverter);
 
 // handle error
 app.use(errorHandler);
-
-//make a screenshot every day at 14:30 ( 30 14 * * * ) 
-
-/*
-cron.schedule('* * * * *',async () => {
-	const browser = await puppeteer.connect({ browserWSEndpoint: config.BROWSERLESS_ENDPOINT });
-	const page = await browser.newPage();
-	await page.goto('https://www.youtube.com/watch?v=DZF7EUYvtxc');
-    await page.waitForSelector('.buttons ytd-button-renderer:nth-child(2)');
-    let yesButton = await page.$('.buttons ytd-button-renderer:nth-child(2)');
-    await yesButton.click();
-    await page.evaluate(()=>{
-      document.querySelector('.ytp-button.ytp-settings-button').click();
-      document.querySelector('.ytp-panel-menu .ytp-menuitem:nth-child(2)').click();
-      document.querySelector('.ytp-quality-menu .ytp-panel-menu .ytp-menuitem:nth-child(2)').click();
-      document.querySelector('.ytp-chrome-bottom').style.display='none';
-    })
-    await page.waitForTimeout(5000);
-    let player = await page.$('video');
-	await player.screenshot({ 
-		path: `src/images/${getCurrentDate()}.png`
-	});
-	await browser.close();
-});
-*/
-
-
-
-function getCurrentDate(){
-	let date = new Date().getDate();
-	let month = new Date().getMonth();
-	let year = new Date().getFullYear();
-	let hour = new Date().getHours();
-	let minutes = new Date().getMinutes(); 
-	let seconds = new Date().getSeconds();
-	return `${date}-${month}-${year}-${hour}-${minutes}-${seconds}`;
-}
-
-async function getImagesFolder(){
-	let images = await fsPromises.readdir('./src/images');
-	return images.map(image=>{
-		return 'src/images/' + image;
-	})
-}
-
-
 
 module.exports = app;
