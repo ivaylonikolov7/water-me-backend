@@ -3,14 +3,14 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-	<img src="src/images/plant-svgrepo-com.svg" alt="Logo" width="80" height="80">
+  <a href="https://github.com/ivaylonikolov7/water-me-backend">
+	<img src="src/plant-svgrepo-com.svg" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Water my plants - Backend</h3>
 
   <p align="center">
-	This is the backend for "<a href="https://github.com/ivaylonikolov7/water-me-client">Water my plant backend</a>"
+	This is the backend for "<a href="https://github.com/ivaylonikolov7/water-me-client">Water my plant frontend</a>"
 	<br />
 	<br />
 	<a href="https://watermyplant.com">View project</a>
