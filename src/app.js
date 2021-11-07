@@ -13,6 +13,7 @@ const { authLimiter } = require('./middlewares/rateLimiter');
 const routes = require('./routes/v1');
 const leaderBoardRoutes = require('./routes/leaderboard.route');
 const progressionRoutes = require('./routes/progression.route');
+const plantRoutes = require('./routes/plant.route');
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
 const cronjobs = require('./cronjobs/');
@@ -60,6 +61,7 @@ if (config.env === 'production') {
 
 app.use('/leaderboard', leaderBoardRoutes);
 app.use('/progression', progressionRoutes);
+app.use('/plant', plantRoutes)
 // v1 api routes
 app.use('/v1', routes);
 
