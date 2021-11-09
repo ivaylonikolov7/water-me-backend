@@ -35,7 +35,8 @@ async function getImagesFolder(){
 }
 
 module.exports = function(){
+	makeVideo();
     cron.schedule('0 * * * *',async () => {
-        makeVideo();
+        //makeVideo();
     })
 };
