@@ -61,4 +61,5 @@ module.exports = {
     },
     from: envVars.EMAIL_FROM,
   },
+  BROWSERLESS_ENDPOINT: envVars.BROWSERLESS_ENDPOINT
 };

@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const cron = require('node-cron');
+const config = require('../config/config');
 
 function getCurrentDate(){
 	let date = new Date().getDate();
@@ -11,11 +12,11 @@ function getCurrentDate(){
 	return `${date}-${month}-${year}-${hour}-${minutes}-${seconds}`;
 }
 
-module.exports = function(){
-    cron.schedule('* */4 * * *',async () => {
+module.exports = async function(){
+    // cron.schedule('* */4 * * *',async () => {
         const browser = await puppeteer.connect({ browserWSEndpoint: config.BROWSERLESS_ENDPOINT });
         const page = await browser.newPage();
-        await page.goto('https://www.youtube.com/watch?v=DZF7EUYvtxc');
+        await page.goto('https://www.youtube.com/watch?v=P-dukbUBtpE');
         await page.waitForSelector('.buttons ytd-button-renderer:nth-child(2)');
         let yesButton = await page.$('.buttons ytd-button-renderer:nth-child(2)');
         await yesButton.click();
@@ -30,6 +31,7 @@ module.exports = function(){
         await player.screenshot({ 
             path: `src/images/${getCurrentDate()}.png`
         });
+        console.log('here');
         await browser.close();
-    });
+    // });
 }
