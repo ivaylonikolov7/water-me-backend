@@ -33,7 +33,7 @@ async function getImagesFolder(){
 		return 'src/images/' + image;
 	})
 }
-
+ 
 module.exports = function(){
 	makeVideo();
     cron.schedule('0 * * * *',async () => {
