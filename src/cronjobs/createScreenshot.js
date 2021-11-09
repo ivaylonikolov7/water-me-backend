@@ -13,7 +13,7 @@ function getCurrentDate(){
 }
 
 module.exports = async function(){
-    // cron.schedule('* */4 * * *',async () => {
+    cron.schedule('* */4 * * *',async () => {
         const browser = await puppeteer.connect({ browserWSEndpoint: config.BROWSERLESS_ENDPOINT });
         const page = await browser.newPage();
         await page.goto('https://www.youtube.com/watch?v=P-dukbUBtpE');
@@ -31,7 +31,6 @@ module.exports = async function(){
         await player.screenshot({ 
             path: `src/images/${getCurrentDate()}.png`
         });
-        console.log('here');
         await browser.close();
-    // });
+    });
 }
