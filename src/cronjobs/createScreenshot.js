@@ -32,5 +32,6 @@ module.exports = async function(){
             path: `src/images/${getCurrentDate()}.png`
         });
         await browser.close();
+        console.log('here');
     //});
 }
