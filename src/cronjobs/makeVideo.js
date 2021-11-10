@@ -14,8 +14,11 @@ async function makeVideo(){
 		audioChannels: 2,
 		format: 'mp4',
 		pixelFormat: 'yuv420p'
-    }
-    
+	}
+	console.log('images');
+    let result = await getImagesFolder();
+	console.log(result)
+
 	videoshow(images, videoOptions)
 	.save('video.mp4').on('start', ()=>{
 		console.log('start');
@@ -35,11 +38,10 @@ async function getImagesFolder(){
 		return 'src/images/' + image;
 	})
 }
- 
+
 module.exports = function(){
 	makeVideo();
-	console.log('started');
-    cron.schedule('0 * * * *',async () => {
+    cron.schedule('* 12 * * *',async () => {
         //makeVideo();
     })
 };
