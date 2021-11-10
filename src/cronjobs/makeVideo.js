@@ -19,8 +19,10 @@ async function makeVideo(){
 	videoshow(images, videoOptions)
 	.save('video.mp4').on('start', ()=>{
 		console.log('start');
-	}).on('error', (err)=>{
-		console.log(err);
+	}).on('error', (err, stdout, stderr)=>{
+		console.error('Error:', err)
+		console.error('ffmpeg stderr:', stderr)
+		console.error('ffmpeg stdout:', stdout)
 	}).on('end', ()=>{
 		console.log('end');
 	})
