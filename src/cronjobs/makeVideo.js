@@ -16,12 +16,13 @@ async function makeVideo(){
 		pixelFormat: 'yuv420p'
     }
     
-	videoshow(images, videoOptions).on('start', ()=>{
+	videoshow(images, videoOptions)
+	.save('video.mp4').on('start', ()=>{
 		console.log('start');
 	}).on('error', (err, stdout, stderr)=>{
 		console.error('Error:', err)
 		console.error('ffmpeg stderr:', stderr)
-		console.error('ffmpeg stdout:', stdout)
+		console.error('ffmpeg stderr:', stdout)
 	}).on('end', ()=>{
 		console.log('end');
 	})
