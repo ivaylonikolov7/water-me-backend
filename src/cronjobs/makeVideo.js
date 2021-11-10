@@ -8,7 +8,7 @@ async function makeVideo(){
 		fps: 1,
 		transition: false,
 		videoBitrate: 1024,
-		videoCodec: 'libx264',
+		videoCodec: 'libxf',
 		size: '640x?',
 		audioBitrate: '128k',
 		audioChannels: 2,
