@@ -39,7 +39,7 @@ module.exports = async function(){
             Key: `images/${getCurrentDate()}.png`,
             Body: screenshot
         }, (err, data)=>{
-            çç(err, data);
+            console.log(err, data);
         })        
         await browser.close();
     //});
