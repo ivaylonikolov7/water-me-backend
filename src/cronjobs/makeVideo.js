@@ -18,7 +18,7 @@ async function makeVideo(){
 		pixelFormat: 'yuv420p'
 	} */
 	
-	command.input('./src/images/%*.png')
+	command.input('src/images/%*.png')
 	.videoCodec('libx264')
 	.audioCodec('libmp3lame')
 	.size('683x384')
