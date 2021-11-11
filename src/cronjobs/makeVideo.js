@@ -25,7 +25,7 @@ async function makeVideo(){
 		pixelFormat: 'yuv420p'
 	} */
 	
-	command.input('src/images/29-9-2021-0-48-9.jpeg')
+	command.input('src/images/29-9-2021-0-48-9.png')
 	.loop(5)
 	.fps(25)
 	.on('error', (err)=>{
