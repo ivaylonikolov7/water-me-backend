@@ -3036,7 +3036,7 @@
   "resolved" "https://registry.npmjs.org/flatted/-/flatted-3.2.0.tgz"
   "version" "3.2.0"
 
-"fluent-ffmpeg@^2.0.0":
+"fluent-ffmpeg@^2.0.0", "fluent-ffmpeg@^2.1.2":
   "integrity" "sha1-yVLeIkD4EuvaCqgAbXd27irPfXQ="
   "resolved" "https://registry.npmjs.org/fluent-ffmpeg/-/fluent-ffmpeg-2.1.2.tgz"
   "version" "2.1.2"
