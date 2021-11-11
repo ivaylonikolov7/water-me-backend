@@ -19,8 +19,6 @@ async function makeVideo(){
 	} */
 	
 	command.input('src/images/%*.png')
-	.videoCodec('libx264')
-	.audioCodec('libmp3lame')
 	.size('683x384')
 	.on('error', (err)=>{
 		console.log(err)
