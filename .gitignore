@@ -11,5 +11,4 @@ yarn-error.log
 # Code coverage
 coverage
 video.mp4
-src/images
 package-lock.json
