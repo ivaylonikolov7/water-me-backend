@@ -1,11 +1,18 @@
 var ffmpeg = require('fluent-ffmpeg');
-var command = ffmpeg({logging: console});
+var command = ffmpeg();
+var gm = require('gm');
+
 
 const fsPromises = require('fs').promises;
 const cron = require('node-cron');
 
 async function makeVideo(){
 	let images = await getImagesFolder();
+	images.map(image=>{
+		gm(image).identify((err,data)=>{
+			console.log(data)
+		})
+	})
 	/* const videoOptions = {
 		fps: 1,
 		transition: false,
@@ -18,14 +25,14 @@ async function makeVideo(){
 		pixelFormat: 'yuv420p'
 	} */
 	
-	command.input('src/images/29-9-2021-0-48-9.jpg')
+	command.input('src/images/29-9-2021-0-48-9.jpeg')
 	.loop(5)
 	.fps(25)
 	.on('error', (err)=>{
 		console.log(err)
 	})
 	.on('stderr', (err)=>{
-		console.log(err)
+		//console.log(err)
 	})
 	.on('end', ()=>{
 		console.log('done');
