@@ -36,10 +36,10 @@ module.exports = async function(){
         let screenshot = await player.screenshot();
         s3.upload({
             Bucket: 'water-plant-rpi',
-            Key: `images/${getCurrentDate()}.jpg`,
+            Key: `images/${getCurrentDate()}.png`,
             Body: screenshot
         }, (err, data)=>{
-            console.log(err, data);
+            çç(err, data);
         })        
         await browser.close();
     //});

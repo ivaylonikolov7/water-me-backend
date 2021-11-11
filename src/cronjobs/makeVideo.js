@@ -7,24 +7,7 @@ const fsPromises = require('fs').promises;
 const cron = require('node-cron');
 
 async function makeVideo(){
-	let images = await getImagesFolder();
-	images.map(image=>{
-		gm(image).identify((err,data)=>{
-			console.log(data)
-		})
-	})
-	/* const videoOptions = {
-		fps: 1,
-		transition: false,
-		videoBitrate: 1024,
-		videoCodec: 'libx264',
-		size: '640x?',
-		audioBitrate: '128k',
-		audioChannels: 2,
-		format: 'mp4',
-		pixelFormat: 'yuv420p'
-	} */
-	
+	/*let images = await getImagesFolder();
 	command.input('src/images/29-9-2021-0-48-9.png')
 	.loop(5)
 	.fps(25)
@@ -38,17 +21,7 @@ async function makeVideo(){
 		console.log('done');
 	})
 	.save('output.mp4')
-
-	// videoshow(images, videoOptions)
-	// .save('video.mp4').on('start', ()=>{
-	// 	console.log('start');
-	// }).on('error', (err, stdout, stderr)=>{
-	// 	console.error('Error:', err)
-	// 	console.error('ffmpeg stderr:', stderr)
-	// 	console.error('ffmpeg stderr:', stdout)
-	// }).on('end', ()=>{
-	// 	console.log('end');
-	// })
+	*/
 }
 
 
@@ -62,6 +35,6 @@ async function getImagesFolder(){
 module.exports = function(){
 	makeVideo();
     cron.schedule('* 12 * * *',async () => {
-        //makeVideo();
+			
     })
 };
