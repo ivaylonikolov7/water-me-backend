@@ -1,5 +1,5 @@
 var ffmpeg = require('fluent-ffmpeg');
-var command = ffmpeg();
+var command = ffmpeg({logging: console});
 
 const fsPromises = require('fs').promises;
 const cron = require('node-cron');
@@ -22,6 +22,9 @@ async function makeVideo(){
 	.loop(5)
 	.fps(25)
 	.on('error', (err)=>{
+		console.log(err)
+	})
+	.on('stderr', (err)=>{
 		console.log(err)
 	})
 	.on('end', ()=>{
