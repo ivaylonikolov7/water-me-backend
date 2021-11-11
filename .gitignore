@@ -3,12 +3,13 @@ node_modules
 
 # yarn error logs
 yarn-error.log
+package-lock.json
 
 # Environment varibales
 .env*
 !.env*.example
-
-# Code coverage
 coverage
+
 video.mp4
-package-lock.json
+
+src/images
